@@ -87,28 +87,28 @@ pipeline {
             script {dockerImage = docker.build("achatproject:latest")}
           }
         }
-        stage('Push image') {
- 	      steps {
- 	       withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
- 			sh "docker push nawreschouari/achat_devops"
-        	}
+        stage('Push') {
+          steps {
+			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
+			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'
+			    sh 'docker push nawreschouari/achat_devops:achatproject'
+				}
+		}
+        stage('deploy') {
+          steps {
+           sh 'docker stop mysqldb'
+           sh 'docker rm -f mysqldb'
+           sh 'docker stop achatproject'
+           sh 'docker rm -f achatproject'
+           sh 'docker-compose up -d'
           }
         }
         stage('Cleaning up') {
  	      steps {
  	       withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-        	 sh "docker rmi -f nawreschouari/achat_devops"
-        	}
+           sh "docker rmi -f nawreschouari/achat_devops"
+           }
           }
-        }
-        /*stage('deploy') {
-          steps {
-            sh 'docker stop mysqldb'
-            sh 'docker rm -f mysqldb'
-            sh 'docker stop achatproject'
-            sh 'docker rm -f achatproject'
-            sh 'docker-compose up -d'
-          }
-        }*/		
+        }	
     }
 }
