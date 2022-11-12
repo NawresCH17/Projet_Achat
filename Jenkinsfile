@@ -92,7 +92,7 @@ pipeline {
 			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
 			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'
 			    sh 'docker push nawreschouari/achat_devops:achatproject'
-				}
+		 }
 		}
         stage('deploy') {
           steps {
@@ -101,13 +101,6 @@ pipeline {
            sh 'docker stop achatproject'
            sh 'docker rm -f achatproject'
            sh 'docker-compose up -d'
-          }
-        }
-        stage('Cleaning up') {
- 	      steps {
- 	       withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-           sh "docker rmi -f nawreschouari/achat_devops"
-           }
           }
         }	
     }
