@@ -82,7 +82,7 @@ pipeline {
                 }
             }    
         }*/
-        /*stage('Build image') {
+        stage('Build image') {
           steps {
             script {dockerImage = docker.build("achatproject:latest")}
           }
@@ -102,6 +102,6 @@ pipeline {
             sh 'docker rm -f achatproject'
             sh 'docker-compose up -d'
           }
-         }*/		
+         }		
     }
 }
