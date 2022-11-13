@@ -25,7 +25,7 @@ import java.util.List;
 <span class="fc" id="L25">		List&lt;Stock&gt; stocks = (List&lt;Stock&gt;) stockRepository.findAll();</span>
 <span class="fc bfc" id="L26" title="All 2 branches covered.">		for (Stock stock : stocks) {</span>
 <span class="fc" id="L27">			log.info(&quot; Stock : &quot; + stock);</span>
-<span class="fc" id="L28">		}</span>
+		}
 <span class="fc" id="L29">		log.info(&quot;out of method retrieveAllStocks&quot;);</span>
 		// récuperer la date à l'instant t2
 		// temps execution = t2 - t1
@@ -77,7 +77,7 @@ import java.util.List;
 <span class="nc" id="L77">			finalMessage = newLine + finalMessage + msgDate + newLine + &quot;: le stock &quot;</span>
 <span class="nc" id="L78">					+ stocksEnRouge.get(i).getLibelleStock() + &quot; a une quantité de &quot; + stocksEnRouge.get(i).getQte()</span>
 <span class="nc" id="L79">					+ &quot; inférieur à la quantité minimale a ne pas dépasser de &quot; + stocksEnRouge.get(i).getQteMin()</span>
-					+ newLine;
+<span class="nc" id="L80">					+ newLine;</span>
 
 		}
 <span class="nc" id="L83">		log.info(finalMessage);</span>

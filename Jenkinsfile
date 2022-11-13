@@ -22,17 +22,17 @@ pipeline {
                 url:'https://github.com/NawresCH17/Projet_Achat.git'
             }
         }
-        stage('MVN CLEAN'){
+        stage('CLEAN'){
             steps{
                 sh 'mvn clean '
             }
         }
-        stage ('MVN COMPILE') {
+        stage ('COMPILE') {
             steps {
                sh 'mvn compile'
             }
         }
-        stage ('JUnit and Mockito Test') {
+        stage ('Test') {
             steps {
                sh 'mvn test'
             }
@@ -87,7 +87,7 @@ pipeline {
             script {dockerImage = docker.build("achatproject:latest")}
           }
         }
-        stage('Push image') {
+        stage('Push') {
           steps {
 			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
 			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'

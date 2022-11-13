@@ -34,7 +34,7 @@ import java.util.Set;
 <span class="fc" id="L34">		List&lt;Facture&gt; factures = (List&lt;Facture&gt;) factureRepository.findAll();</span>
 <span class="fc bfc" id="L35" title="All 2 branches covered.">		for (Facture facture : factures) {</span>
 <span class="fc" id="L36">			log.info(&quot; facture : &quot; + facture);</span>
-<span class="fc" id="L37">		}</span>
+		}
 <span class="fc" id="L38">		return factures;</span>
 	}
 
@@ -65,7 +65,7 @@ import java.util.Set;
 			//Calculer le montant remise pour la facture
 <span class="nc" id="L66">			montantRemise = montantRemise + montantRemiseDetail;</span>
 <span class="nc" id="L67">			detailFactureRepository.save(detail);</span>
-<span class="nc" id="L68">		}</span>
+		}
 <span class="nc" id="L69">		f.setMontantFacture(montantFacture);</span>
 <span class="nc" id="L70">		f.setMontantRemise(montantRemise);</span>
 <span class="nc" id="L71">		return f;</span>
