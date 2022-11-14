@@ -94,7 +94,7 @@ pipeline {
 			    sh 'docker push nawreschouari/achat_devops:achatproject'
 		 }
 		}
-        stage('Building image docker-compose') {
+        /*stage('Building image docker-compose') {
           steps {
            sh 'docker stop mysqldb'
            sh 'docker rm -f mysqldb'
@@ -102,6 +102,6 @@ pipeline {
            sh 'docker rm -f achatproject'
            sh 'docker-compose up -d'
           }
-        }	
+        }*/	
     }
 }
