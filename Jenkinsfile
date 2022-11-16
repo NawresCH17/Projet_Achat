@@ -88,13 +88,11 @@ pipeline {
           }
         }
         stage('Push') {
-  	    steps {
+          steps {
 			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
-			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject:v1.$BUILD_ID'
 			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'
-			    sh 'docker push nawreschouari/achat_devops:v1.$BUILD_ID'
 			    sh 'docker push nawreschouari/achat_devops:achatproject'
-				}
+		 }
 		}
         stage('Building image docker-compose') {
           steps {
