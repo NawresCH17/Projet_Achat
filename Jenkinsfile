@@ -89,7 +89,7 @@ pipeline {
         }
         stage('Push') {
           steps {
-			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
+			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u "nawreschouari" -p "203JFT2317az!!" docker.io'
 			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'
 			    sh 'docker push nawreschouari/achat_devops:achatproject'
 		 }
