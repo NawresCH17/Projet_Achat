@@ -88,15 +88,13 @@ pipeline {
             script {dockerImage = docker.build("nawreschouari/achat_devops:latest")}
           }
         }
-	stage('Push image'){
+	stage('Push image') {
  	    steps {
- 	           docker.withRegistry( '', registryCredential ) { 
-			   dockerImage.push()
- 			
+ 	       withDockerRegistry([ credentialsId: "dockerhub_id", url: "" ]) {
+ 			sh "docker push nawreschouari/achat_devops"
         	}
              }
-       }
-      
+        }
         stage('Building image docker-compose') {
           steps {
            sh 'docker-compose up -d'
