@@ -8,6 +8,7 @@ pipeline {
     }
     environment {
         dockerImage = ''
+	registryCredential= 'dockerhub_id'
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "192.168.1.19:8081"
