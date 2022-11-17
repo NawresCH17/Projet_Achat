@@ -87,7 +87,7 @@ pipeline {
             script {dockerImage = docker.build("nawreschouari/achat_devops:latest")}
           }
         }
-	stage('Push image') {
+	stage('Push image'){
  	    steps {
  	           docker.withRegistry( '', registryCredential ) { 
 			   {dockerImage .push}
