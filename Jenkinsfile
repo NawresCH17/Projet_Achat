@@ -88,14 +88,21 @@ pipeline {
             script {dockerImage = docker.build("nawreschouari/achat_devops:latest")}
           }
         }
-	stage('Push image') {
+	/*stage('Push image') {
  	    steps {
  	       withDockerRegistry([ credentialsId: "dockerhub_id", url: "" ]) {
  			sh "docker push nawreschouari/achat_devops"
         	}
              }
-        }
-	stage('Building image docker-compose') {
+        }*/
+	stage('Push') {
+          steps {
+		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
+	        sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'
+		sh 'docker push nawreschouari/achat_devops:achatproject'
+		 }
+		}
+        stage('Building image docker-compose') {
           steps {
            sh 'docker stop mysqldb'
            sh 'docker rm -f mysqldb'
@@ -103,6 +110,6 @@ pipeline {
            sh 'docker rm -f achatproject'
            sh 'docker-compose up -d'
           }
-        }	
+        }		
     }
 }
