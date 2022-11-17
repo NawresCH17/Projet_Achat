@@ -82,25 +82,22 @@ pipeline {
                 }
             }    
         }*/
-        stage('Build image') {
+         stage('Build image') {
           steps {
-            script {dockerImage = docker.build("achatproject:latest")}
+            script {dockerImage = docker.build("nawreschouari/achat_devops:latest")}
           }
         }
-	
-        stage('Push') {
-          steps {
-			    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u nawreschouari -p 203JFT2317az!!'
-			    sh 'docker tag achatproject nawreschouari/achat_devops:achatproject'
-			    sh 'docker push nawreschouari/achat_devops:achatproject'
-		 }
-	   }
+	stage('Push image') {
+ 	    steps {
+ 	           docker.withRegistry( '', registryCredential ) { 
+		       {dockerImage .push
+ 			
+        	}
+             }
+       }
+      
         stage('Building image docker-compose') {
           steps {
-           sh 'docker stop mysqldb'
-           sh 'docker rm -f mysqldb'
-           sh 'docker stop achatproject'
-           sh 'docker rm -f achatproject'
            sh 'docker-compose up -d'
           }
         }	
