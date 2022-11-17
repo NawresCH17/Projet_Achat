@@ -95,8 +95,12 @@ pipeline {
         	}
              }
         }
-        stage('Building image docker-compose') {
+	stage('Building image docker-compose') {
           steps {
+           sh 'docker stop mysqldb'
+           sh 'docker rm -f mysqldb'
+           sh 'docker stop achatproject'
+           sh 'docker rm -f achatproject'
            sh 'docker-compose up -d'
           }
         }	
